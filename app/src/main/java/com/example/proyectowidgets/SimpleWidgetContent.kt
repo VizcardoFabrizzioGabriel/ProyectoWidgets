@@ -21,8 +21,10 @@ import androidx.glance.text.Text
 
 class SimpleWidgetContent : GlanceAppWidget() {
 
-    override suspend fun provideGlance(context: Context, id: GlanceId) {
-
+    override suspend fun provideGlance(
+        context: Context,
+        id: GlanceId
+    ) {
         provideContent {
             GlanceTheme {
                 MyContent()
@@ -33,20 +35,35 @@ class SimpleWidgetContent : GlanceAppWidget() {
     @Composable
     private fun MyContent() {
         Column(
-            modifier = GlanceModifier.fillMaxSize()
-                .background(GlanceTheme.colors.background),
+            modifier = GlanceModifier
+                .fillMaxSize()
+                .background(GlanceTheme.colors.background)
+                .padding(12.dp),
             verticalAlignment = Alignment.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Text(
-                text = "¿A donde quieres dirigirte?",
-                modifier = GlanceModifier.padding(12.dp)
+                text = "Fabrizzio Vizcardo",
+                modifier = GlanceModifier.padding(8.dp)
             )
 
-            Row(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = "¿A dónde quieres dirigirte?",
+                modifier = GlanceModifier.padding(8.dp)
+            )
+
+            Row(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Button(
                     text = "Página Principal",
                     onClick = actionStartActivity<MainActivity>()
+                )
+
+                Button(
+                    text = "Mi perfil",
+                    onClick = actionStartActivity<ProfileActivity>()
                 )
             }
         }
